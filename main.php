@@ -35,8 +35,25 @@
    {
 ?>
       <div id="share-view">
-         Password: <input id="password-field" type="text" name="password"> <input id="generate-guid" type="submit" value="Generate Link">
+         Password: <input id="password-field" type="text" name="password">
+         <input id="generate-guid" type="button" onclick="createFile();" value="Generate Link">
       </div>
+      <script>
+         function createFile()
+         {
+            $.ajax({
+               type: "POST",
+               url: "create-file.php",
+               datatype: "html",
+               data: {password:$("#password-field").val()},
+               success: function( data )
+               {
+                  alert( data );
+               }
+            });
+         }
+      </script>
+
       <div id="input-view">
          Enter password GUID <input id="password-guid" type="text" name="password guid input">
          <input id="retrive-password" type="button" value="Retrive Password">
