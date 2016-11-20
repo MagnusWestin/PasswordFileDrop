@@ -1,14 +1,13 @@
 <?php
    if( isset( $_GET['PWD'] ) == true )
    {
-      $myfile = fopen( $_GET['PWD'] . ".pwd", "r" ) or die( "Unable to open file!" );
-      $fileContent = fread( $myfile, filesize( $_GET['PWD'] . ".pwd" ) );
+      $myfile = fopen( "data/" . $_GET['PWD'] . ".pwd", "r" ) or die( "Unable to open file!" );
+      $fileContent = fread( $myfile, filesize( "data/" . $_GET['PWD'] . ".pwd" ) );
       fclose( $myfile );
-      unlink( $_GET['PWD'] . ".pwd" );
-      echo $fileContent;
+      unlink( "data/" . $_GET['PWD'] . ".pwd" );
 ?>
       <div id="display-password">
-         Password: <input id="password-field" type="text" name="password" value="test" readonly>
+         Password: <input id="password-field" type="text" name="password" value="<?php echo $fileContent; ?>" readonly>
       </div>
       <script>
          $(document).ready( function()
@@ -36,7 +35,8 @@
 ?>
       <div id="share-view">
          Password: <input id="password-field" type="text" name="password">
-         <input id="generate-guid" type="button" onclick="createFile();" value="Generate Link">
+         <input id="generate-guid" type="button" onclick="createFile();" value="Generate Link"><br>
+         Password Link: <a id="password-link" href=""></a>
       </div>
       <script>
          function createFile()
@@ -48,7 +48,8 @@
                data: {password:$("#password-field").val()},
                success: function( data )
                {
-                  alert( data );
+                  $("#password-link").attr( "href", data );
+                  $("#password-link").text( data );
                }
             });
          }
