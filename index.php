@@ -1,6 +1,6 @@
 <?php
    header('Content-type: text/html; charset=utf-8');
-   session_start();
+   //session_start();
 ?>
 <?php
    error_reporting( E_ALL | E_STRICT );
