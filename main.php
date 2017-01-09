@@ -7,7 +7,7 @@
       unlink( "data/" . $_GET['PWD'] . ".pwd" );
 ?>
       <div id="display-password">
-         Password: <input id="password-field" type="text" name="password" value="<?php echo $fileContent; ?>" readonly>
+         Password: <input id="password-field" type="text" name="password" value="<?php echo htmlspecialchars( $fileContent ); ?>" readonly>
       </div>
       <script>
          $(document).ready( function()
