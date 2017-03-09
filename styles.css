@@ -2,3 +2,9 @@
 {
    color: red;
 }
+
+body
+{
+   background-color: Window;
+   color: WindowText;
+}
